@@ -1,0 +1,14 @@
+dash
+dash-bootstrap-components
+xhtml2pdf
+beautifulsoup4
+requests
+chromadb
+sentence-transformers
+numpy
+torch
+scikit-learn
+bs4
+tiktoken
+asyncio
+markdown2

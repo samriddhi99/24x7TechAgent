@@ -1,0 +1,5 @@
+2025-11-13 15:48:49,996 | INFO | 🖥️ Using device: cuda
+2025-11-13 15:48:49,996 | INFO | 🚀 Starting RAG pipeline
+2025-11-13 15:56:14,597 | INFO | 🌐 Finished crawling 140 pages | 6067 chunks
+2025-11-13 15:56:14,597 | INFO | 📄 JSONL file saved: enriched_pages.jsonl
+2025-11-13 15:56:14,597 | INFO | ✅ Data enrichment complete. No vector indexing performed.

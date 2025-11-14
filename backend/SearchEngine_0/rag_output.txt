@@ -1,0 +1,15 @@
+[ESCALATED TO HUMAN AGENT]
+
+Reason: AI expressed uncertainty but sources available
+Confidence: 24%
+
+Original Question: What is shopify and how does it work?
+
+--- Metadata ---
+Confidence: 24.0%
+Should Escalate: True
+Reason: AI expressed uncertainty but sources available
+Escalated: Yes
+
+Sources:
+- https://www.wexledu.com/terms.html (score: 11.9913)

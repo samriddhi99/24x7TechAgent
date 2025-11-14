@@ -87,49 +87,17 @@ Expected JSON format:
             logger.error(f"LLM error: {e}")
             return {"summary": "", "keywords": []}
 
-    # Add to generate_rag.py
-
-    def preprocess_for_embedding(text: str) -> str:
-        """Clean and normalize text before embedding"""
-        # Remove excessive whitespace
-        text = re.sub(r'\s+', ' ', text)
-        
-        # Remove special characters but keep punctuation
-        text = re.sub(r'[^\w\s\.,!?;:\-()]', '', text)
-        
-        # Normalize quotes
-        text = text.replace('"', '"').replace('"', '"')
-        text = text.replace(''', "'").replace(''', "'")
-        
-        # Remove URLs if any survived
-        text = re.sub(r'http\S+|www\.\S+', '', text)
-        
-        return text.strip()
-
     def split_into_paragraphs(text, max_len=512):
-        """Improved chunking with overlap for context continuity"""
-        text = preprocess_for_embedding(text)
-        
         paras = [p.strip() for p in text.split('\n') if p.strip()]
         chunks, current = [], ''
-        overlap = 50  # Character overlap between chunks
-        
         for para in paras:
             if len(current) + len(para) < max_len:
                 current += ' ' + para
             else:
-                if current:
-                    chunks.append(current.strip())
-                    # Add overlap from end of current chunk
-                    words = current.split()
-                    overlap_text = ' '.join(words[-10:]) if len(words) > 10 else ''
-                    current = overlap_text + ' ' + para
-                else:
-                    current = para
-        
+                chunks.append(current.strip())
+                current = para
         if current:
             chunks.append(current.strip())
-        
         return chunks
 
     visited, to_visit = set(), set([base_url])

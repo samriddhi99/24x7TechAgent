@@ -1,0 +1,6 @@
+2025-11-13 21:13:30,780 | INFO | 🖥️ Using device: cuda
+2025-11-13 21:13:30,780 | INFO | 🚀 Starting RAG pipeline
+2025-11-13 21:16:20,698 | ERROR | LLM error: Invalid \escape: line 2 column 326 (char 327)
+2025-11-13 21:20:51,897 | INFO | 🌐 Finished crawling 140 pages | 140 chunks
+2025-11-13 21:20:51,898 | INFO | 📄 JSONL file saved: enriched_pages.jsonl
+2025-11-13 21:20:51,898 | INFO | ✅ Data enrichment complete. No vector indexing performed.

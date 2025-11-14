@@ -1,15 +1,14 @@
-[ESCALATED TO HUMAN AGENT]
-
-Reason: AI expressed uncertainty but sources available
-Confidence: 24%
-
-Original Question: What is shopify and how does it work?
+Okay, let’s break down what Shopify is, based on the documentation provided. Shopify is a platform that allows you to build and manage your own online store. It’s designed to be user-friendly, even if you have no prior experience with e-commerce. It’s a Platform for Selling: Shopify provides all the tools you need to list, sell, and manage your products online. No Inventory Needed: A key feature is the “dropshipping” model. With dropshipping, you don’t need to hold any inventory yourself. When a customer orders from your store, you purchase the product from a third-party supplier (like a manufacturer or wholesaler), and the supplier ships it directly to the customer. Easy Setup: You can set up your store quickly and easily.
 
 --- Metadata ---
-Confidence: 24.0%
-Should Escalate: True
+Confidence: 41.0%
+Should Escalate: False
 Reason: AI expressed uncertainty but sources available
-Escalated: Yes
+Escalated: No
 
 Sources:
-- https://www.wexledu.com/terms.html (score: 11.9913)
+- https://www.shopify.com/faq#shipping (score: 6.4577)
+- https://www.shopify.com/faq#payments (score: 6.4551)
+- https://www.shopify.com/faq#getting_started (score: 6.4521)
+- https://www.shopify.com/faq#selling (score: 6.4348)
+- https://www.shopify.com/faq (score: 6.4246)

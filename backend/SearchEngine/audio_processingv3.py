@@ -24,7 +24,7 @@ from pydub import AudioSegment
 from gtts import gTTS
 
 # Import RAG pipeline function from your app
-from .search_engine_webApp import process_query
+from search_engine_webApp import process_query
 
 # ----------------------------- Utilities -----------------------------
 
@@ -311,7 +311,7 @@ def callcenter_answer_from_mp3(
     }
 
 def callcenter_answer_from_bytes(
-    path,
+    audio_bytes: bytes,
     output_dir: str,
     filename_base: str = "rag_output",
     *,
@@ -325,15 +325,11 @@ def callcenter_answer_from_bytes(
     Same as above, but accepts raw MP3 bytes (e.g., Flask file upload).
     Saves files into output_dir with base name.
     """
-    
-    with open(path, "rb") as infile:
-        audio_bytes = infile.read()
-
     os.makedirs(output_dir, exist_ok=True)
     input_mp3_path = os.path.join(output_dir, f"{filename_base}.mp3")
-
     with open(input_mp3_path, "wb") as f:
         f.write(audio_bytes)
+
     output_mp3_path = os.path.join(output_dir, f"{filename_base}_answer.mp3")
     save_text_path = os.path.join(output_dir, f"{filename_base}.txt") if save_text else None
 

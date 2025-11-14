@@ -288,7 +288,7 @@ def main():
 
     print(f"🎧 Transcribing: {args.input}")
     #transcript = mp3_to_text(args.input)
-    transcript = "What is shopify and how does it work?"  # Uncomment for testing without audio
+    transcript = "What is Shopify?"  # Uncomment for testing without audio
     print(f"📝 Transcript: {transcript}\n")
 
     print(f"🤖 RAG ({args.mode}, {args.model}) …")

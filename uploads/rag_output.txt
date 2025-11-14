@@ -1,1 +1,12 @@
-⚠️ No relevant documents found.
+[ESCALATED TO HUMAN AGENT]
+
+Reason: No relevant documents found
+Confidence: 0%
+
+Original Question: What is Shopify?
+
+--- Metadata ---
+Confidence: 0.0%
+Should Escalate: True
+Reason: No relevant documents found
+Escalated: Yes
