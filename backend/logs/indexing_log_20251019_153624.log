@@ -1,0 +1,18 @@
+2025-10-19 15:36:24,063 | INFO | 🧠 Starting vector indexing...
+2025-10-19 15:36:27,134 | INFO | Load pretrained SentenceTransformer: sentence-transformers/paraphrase-multilingual-mpnet-base-v2
+2025-10-19 15:37:21,058 | INFO | ✅ Embedding model loaded on: cpu
+2025-10-19 15:37:21,085 | INFO | Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-10-19 15:37:21,173 | INFO | 📦 Loaded 333 documents from enriched_pages.jsonl
+2025-10-19 15:37:21,173 | INFO | ⚙️ Encoding summaries in batch...
+2025-10-19 15:37:27,752 | INFO | ⚙️ Encoding keywords in batch...
+2025-10-19 15:37:31,175 | INFO | 🔍 Norm of embedding for sample 1: 2.7720
+2025-10-19 15:37:31,176 | INFO | 🔍 Norm of embedding for sample 2: 2.7720
+2025-10-19 15:37:31,176 | INFO | 🔍 Norm of embedding for sample 3: 2.7720
+2025-10-19 15:37:31,176 | INFO | 🔍 Norm of embedding for sample 4: 2.7720
+2025-10-19 15:37:31,176 | INFO | 🔍 Norm of embedding for sample 5: 2.7720
+2025-10-19 15:37:31,478 | INFO | ✅ Indexed batch 1 — 333 documents
+2025-10-19 15:37:31,478 | INFO | ✅ Vector store built in 67.41 seconds
+2025-10-19 15:37:31,478 | INFO | 📚 Total documents indexed: 333
+2025-10-19 15:37:31,478 | INFO | 💾 Vector store persisted under: ./chroma_db
+2025-10-19 15:37:31,478 | INFO | 💾 Persisted vector store to disk.
+2025-10-19 15:37:31,481 | INFO | 🎉 Indexing process completed in 67.42 seconds

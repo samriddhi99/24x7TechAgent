@@ -1,0 +1,13 @@
+2025-11-14 09:34:05,890 | INFO | 🖥️ Using device: cpu
+2025-11-14 09:34:05,890 | INFO | 🚀 Starting RAG pipeline
+2025-11-14 09:34:06,426 | ERROR | LLM error: 'response'
+2025-11-14 09:34:07,565 | ERROR | LLM error: 'response'
+2025-11-14 09:34:08,702 | ERROR | LLM error: 'response'
+2025-11-14 09:34:09,861 | ERROR | LLM error: 'response'
+2025-11-14 09:34:10,992 | ERROR | LLM error: 'response'
+2025-11-14 09:34:12,311 | ERROR | LLM error: 'response'
+2025-11-14 09:34:13,453 | ERROR | LLM error: 'response'
+2025-11-14 09:34:14,586 | ERROR | LLM error: 'response'
+2025-11-14 09:34:15,712 | ERROR | LLM error: 'response'
+2025-11-14 09:34:16,847 | ERROR | LLM error: 'response'
+2025-11-14 09:34:17,975 | ERROR | LLM error: 'response'

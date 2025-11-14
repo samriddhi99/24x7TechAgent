@@ -1,0 +1,5 @@
+2025-11-12 15:09:46,896 | INFO | 🖥️ Using device: cpu
+2025-11-12 15:09:46,896 | INFO | 🚀 Starting RAG pipeline
+2025-11-12 15:09:54,845 | INFO | 🌐 Finished crawling 1 pages | 3 chunks
+2025-11-12 15:09:54,846 | INFO | 📄 JSONL file saved: enriched_pages.jsonl
+2025-11-12 15:09:54,846 | INFO | ✅ Data enrichment complete. No vector indexing performed.

@@ -1,0 +1,4 @@
+2025-11-14 09:58:54,806 | INFO | 🧠 Starting vector indexing...
+2025-11-14 09:59:02,031 | INFO | PyTorch version 2.7.1 available.
+2025-11-14 09:59:02,032 | INFO | TensorFlow version 2.20.0 available.
+2025-11-14 09:59:02,719 | INFO | Load pretrained SentenceTransformer: multi-qa-mpnet-base-dot-v1

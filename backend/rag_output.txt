@@ -1,0 +1,18 @@
+[ESCALATED TO HUMAN AGENT]
+
+Reason: AI expressed uncertainty but sources available
+Confidence: 15%
+
+Original Question: What is a Pickachu?
+
+--- Metadata ---
+Confidence: 15.0%
+Should Escalate: True
+Reason: AI expressed uncertainty but sources available
+Escalated: Yes
+
+Sources:
+- https://www.wexledu.com/store.html (score: 15.268)
+- https://www.wexledu.com/publication_houses.html (score: 15.2278)
+- https://www.wexledu.com/elp_cbse_excellence.html (score: 15.0575)
+- https://www.wexledu.com/cbse_program.html (score: 15.0003)

@@ -1,0 +1,6 @@
+2025-10-19 14:43:30,340 | INFO | 🖥️ Using device: cpu
+2025-10-19 14:43:30,340 | INFO | 🚀 Starting RAG pipeline
+2025-10-19 14:43:30,973 | ERROR | LLM error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/generate (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1248167b0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-10-19 14:43:32,234 | ERROR | LLM error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/generate (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1248a56d0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-10-19 14:43:33,743 | ERROR | LLM error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/generate (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1248a5bd0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-10-19 14:43:35,305 | ERROR | LLM error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/generate (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x124910640>: Failed to establish a new connection: [Errno 61] Connection refused'))
