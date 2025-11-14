@@ -1,0 +1,853 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NovaVoice - Your 24/7 AI Voice Assistant</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Full-page background image with lighter overlay */
+    body {
+      position: relative;
+      min-height: 100vh;
+      background-image: url('hero-ai-assistant 1-converted.jpeg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(5, 8, 22, 0.3);
+      z-index: -1;
+    }
+
+    /* Fixed Header - Professional Navigation */
+    .header-fixed {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 50;
+      background: linear-gradient(to bottom, rgba(5, 8, 22, 0.95), rgba(5, 8, 22, 0.85));
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(168, 85, 247, 0.2);
+    }
+
+    .header-nav {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1.2rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .logo:hover {
+      transform: translateY(-2px);
+    }
+
+    .logo-img {
+      width: 45px;
+      height: 45px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.5)) brightness(1.2) contrast(1.1);
+      mix-blend-mode: screen;
+    }
+
+    .nav-center {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .nav-link {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s;
+      font-size: 1rem;
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.3s;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-link:hover {
+      color: var(--accent);
+    }
+
+    .nav-right {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .btn-nav {
+      padding: 0.7rem 1.8rem;
+      font-size: 0.95rem;
+    }
+
+    /* Hero Section - Clean & Professional */
+    .hero {
+      padding: 180px 2rem 100px;
+      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-content {
+      max-width: 1000px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.4rem;
+      background: var(--glass-dark-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(168, 85, 247, 0.4);
+      border-radius: 9999px;
+      font-size: 0.9rem;
+      color: var(--accent);
+      margin-bottom: 2rem;
+      font-weight: 600;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 6vw, 5rem);
+      font-weight: 800;
+      margin: 0 0 1.5rem;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    .hero .subtitle {
+      font-size: clamp(1.1rem, 2.2vw, 1.4rem);
+      color: #E5E7EB;
+      margin: 0 auto 3rem;
+      max-width: 750px;
+      line-height: 1.7;
+    }
+
+    .cta-group {
+      display: flex;
+      gap: 1.2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+
+    .btn-primary {
+      padding: 1.1rem 2.5rem;
+      font-size: 1.05rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-outline {
+      padding: 1.1rem 2.5rem;
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+
+    /* Trust Indicators */
+    .trust-row {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-top: 3rem;
+      padding-top: 0;
+    }
+
+    .trust-item {
+      text-align: center;
+      padding: 2rem 2.5rem;
+      background: linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(192, 132, 252, 0.08));
+      border: 2px solid rgba(168, 85, 247, 0.3);
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s;
+      min-width: 180px;
+    }
+
+    .trust-item:hover {
+      transform: translateY(-5px);
+      border-color: var(--brand);
+      box-shadow: 0 15px 40px rgba(168, 85, 247, 0.4);
+    }
+
+    .trust-number {
+      font-size: 3.5rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--accent), #FCD34D);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: block;
+      margin-bottom: 0.5rem;
+      line-height: 1;
+      text-shadow: 0 0 30px rgba(250, 204, 21, 0.5);
+    }
+
+    .trust-label {
+      color: var(--fg);
+      font-size: 1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Content Sections */
+    .content-section {
+      padding: 5rem 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 4rem;
+    }
+
+    .section-title {
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      font-weight: 800;
+      margin-bottom: 1.2rem;
+      line-height: 1.2;
+    }
+
+    .section-subtitle {
+      font-size: 1.2rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* Problem/Solution Cards */
+    .dual-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .info-card {
+      background: var(--glass-dark-bg);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(168, 85, 247, 0.25);
+      padding: 3rem;
+      border-radius: 20px;
+      transition: all 0.4s;
+    }
+
+    .info-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--brand);
+      box-shadow: 0 20px 60px rgba(168, 85, 247, 0.3);
+    }
+
+    .info-card h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .card-icon {
+      font-size: 2rem;
+    }
+
+    .info-card p {
+      color: #D1D5DB;
+      line-height: 1.8;
+      font-size: 1.05rem;
+    }
+
+    /* Benefits Grid */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .benefit-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(168, 85, 247, 0.2);
+      padding: 2.5rem;
+      border-radius: 16px;
+      transition: all 0.3s;
+      text-align: center;
+    }
+
+    .benefit-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--brand-light);
+      box-shadow: 0 15px 40px rgba(168, 85, 247, 0.25);
+    }
+
+    .benefit-icon {
+      width: 70px;
+      height: 70px;
+      background: rgba(168, 85, 247, 0.15);
+      border: 2px solid var(--brand);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 2rem;
+      transition: all 0.3s;
+    }
+
+    .benefit-card:hover .benefit-icon {
+      background: var(--brand);
+      transform: scale(1.1);
+    }
+
+    .benefit-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    .benefit-card p {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      padding: 6rem 2rem;
+      text-align: center;
+    }
+
+    .cta-box {
+      max-width: 900px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(192, 132, 252, 0.1));
+      backdrop-filter: blur(20px);
+      border: 2px solid rgba(168, 85, 247, 0.3);
+      padding: 4rem 3rem;
+      border-radius: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-box::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(168, 85, 247, 0.1) 0%, transparent 70%);
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
+    }
+
+    .cta-box h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-box p {
+      font-size: 1.2rem;
+      color: #D1D5DB;
+      margin-bottom: 2.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-box .btn {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Pricing Section */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .pricing-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(168, 85, 247, 0.2);
+      padding: 2.5rem;
+      border-radius: 20px;
+      transition: all 0.3s;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--brand-light);
+      box-shadow: 0 20px 50px rgba(168, 85, 247, 0.3);
+    }
+
+    .pricing-featured {
+      border: 2px solid var(--brand);
+      background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(192, 132, 252, 0.05));
+    }
+
+    .pricing-badge {
+      position: absolute;
+      top: -12px;
+      right: 20px;
+      background: linear-gradient(135deg, var(--brand), var(--brand-light));
+      color: white;
+      padding: 0.4rem 1rem;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .pricing-header {
+      text-align: center;
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(168, 85, 247, 0.2);
+    }
+
+    .pricing-header h3 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--fg);
+    }
+
+    .pricing-price {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 0.3rem;
+    }
+
+    .pricing-price .currency {
+      font-size: 1.5rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .pricing-price .amount {
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .pricing-price .period {
+      font-size: 1rem;
+      color: var(--muted);
+    }
+
+    .pricing-features {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 2rem;
+      flex-grow: 1;
+    }
+
+    .pricing-features li {
+      padding: 0.8rem 0;
+      color: #D1D5DB;
+      font-size: 1rem;
+      line-height: 1.6;
+      border-bottom: 1px solid rgba(168, 85, 247, 0.1);
+    }
+
+    .pricing-features li:last-child {
+      border-bottom: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .dual-cards {
+        grid-template-columns: 1fr;
+      }
+      .nav-center {
+        display: none;
+      }
+      .pricing-grid {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-right {
+        gap: 0.5rem;
+      }
+      .btn-nav {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.85rem;
+      }
+      .cta-group {
+        flex-direction: column;
+        align-items: center;
+      }
+      .trust-row {
+        gap: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Professional Fixed Header -->
+  <header class="header-fixed">
+    <nav class="header-nav">
+      <a href="index.html" class="logo">
+        <img src="logo.jpg" alt="Logo" class="logo-img">
+        <span>NovaVoice</span>
+      </a>
+
+      <div class="nav-center">
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#benefits" class="nav-link">Benefits</a>
+        <a href="panel.html" class="nav-link">Configuration</a>
+      </div>
+
+      <div class="nav-right">
+        <a href="record.html" class="btn btn-secondary btn-nav">Try Demo</a>
+        <a href="#contact" class="btn btn-nav">Contact Us</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section - Clear & Impactful -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>
+        Transform Your Customer Service with <span class="highlight">AI</span>
+      </h1>
+
+      <p class="subtitle">
+        24/7 intelligent voice assistant that handles calls, schedules appointments, and delivers exceptional customer experiences — <span class="highlight">automatically</span>.
+      </p>
+
+      <div class="cta-group">
+        <a href="record.html" class="btn btn-primary animate-pulse-glow">
+          Start Free Demo
+          <span>→</span>
+        </a>
+        <button onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})" class="btn btn-secondary btn-outline">
+          See How It Works
+        </button>
+      </div>
+
+      <!-- Trust Indicators -->
+      <div class="trust-row">
+        <div class="trust-item">
+          <span class="trust-number">24/7</span>
+          <span class="trust-label">Always Available</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-number">98%</span>
+          <span class="trust-label">Resolution Rate</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-number">< 2s</span>
+          <span class="trust-label">Response Time</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem/Solution Section -->
+  <section id="features" class="content-section" style="background: linear-gradient(to bottom, transparent, rgba(15, 14, 39, 0.3));">
+    <div class="container">
+      <div class="dual-cards">
+        <div class="info-card">
+          <h2>
+            <span class="card-icon">❌</span>
+            The Problem
+          </h2>
+          <p>
+            Traditional customer support struggles with limited business hours, long wait times, and inconsistent service quality. Customers need help when it's convenient for them — not just during your 9-to-5 schedule.
+          </p>
+        </div>
+
+        <div class="info-card">
+          <h2>
+            <span class="card-icon">✅</span>
+            Our Solution
+          </h2>
+          <p>
+            Our AI voice assistant provides instant, intelligent support around the clock. Powered by cutting-edge technology, it understands context, speaks naturally, and delivers consistent, high-quality assistance whenever your customers need it.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section id="benefits" class="content-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">
+          Why Choose <span class="highlight">NovaVoice</span>?
+        </h2>
+        <p class="section-subtitle">
+          Powerful features designed to transform your customer communication
+        </p>
+      </div>
+
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">🌟</div>
+          <h3><span class="highlight">24/7</span> Availability</h3>
+          <p>Never miss a call again. Our AI assistant is always on, ready to help your customers any time, day or night.</p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">🤖</div>
+          <h3><span class="highlight">AI-Powered</span> Intelligence</h3>
+          <p>Advanced AI understands context and intent, delivering smart, relevant responses to every customer inquiry.</p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">⚡</div>
+          <h3><span class="highlight">Instant</span> Response</h3>
+          <p>No more waiting in queues. Immediate answers and actions that keep your customers satisfied.</p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">🔒</div>
+          <h3>Secure & <span class="highlight">Private</span></h3>
+          <p>Enterprise-grade security with best-in-class data protection and privacy compliance.</p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">🌍</div>
+          <h3><span class="highlight">Multi-Language</span></h3>
+          <p>Serve customers across languages seamlessly with built-in translation and localization.</p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">🎤</div>
+          <h3><span class="highlight">Voice</span> First</h3>
+          <p>Natural, hands-free conversations designed for the way people actually communicate.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section id="pricing" class="content-section" style="padding: 6rem 2rem;">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">
+          Simple, <span class="highlight">Transparent</span> Pricing
+        </h2>
+        <p class="section-subtitle">
+          Choose the plan that fits your business needs
+        </p>
+      </div>
+
+      <div class="pricing-grid">
+        <!-- Standard Plan -->
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <h3>Standard</h3>
+            <div class="pricing-price">
+              <span class="currency">€</span>
+              <span class="amount">89</span>
+              <span class="period">/month</span>
+            </div>
+          </div>
+          <ul class="pricing-features">
+            <li>✓ 24/7 AI Voice Assistant</li>
+            <li>✓ Up to 500 calls/month</li>
+            <li>✓ Multi-language support</li>
+            <li>✓ Basic analytics</li>
+            <li>✓ Email support</li>
+          </ul>
+          <a href="record.html" class="btn btn-secondary" style="width: 100%;">Get Started</a>
+        </div>
+
+        <!-- Professional Plan -->
+        <div class="pricing-card pricing-featured">
+          <div class="pricing-badge">Most Popular</div>
+          <div class="pricing-header">
+            <h3>Professional</h3>
+            <div class="pricing-price">
+              <span class="currency">€</span>
+              <span class="amount">300</span>
+              <span class="period">/month</span>
+            </div>
+          </div>
+          <ul class="pricing-features">
+            <li>✓ Everything in Standard</li>
+            <li>✓ Up to 2000 calls/month</li>
+            <li>✓ Advanced AI capabilities</li>
+            <li>✓ Custom voice & personality</li>
+            <li>✓ Priority support</li>
+            <li>✓ Advanced analytics</li>
+          </ul>
+          <a href="record.html" class="btn" style="width: 100%;">Get Started</a>
+        </div>
+
+        <!-- Premium Plan -->
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <h3>Premium</h3>
+            <div class="pricing-price">
+              <span class="currency">€</span>
+              <span class="amount">789</span>
+              <span class="period">/month</span>
+            </div>
+          </div>
+          <ul class="pricing-features">
+            <li>✓ Everything in Professional</li>
+            <li>✓ Unlimited calls</li>
+            <li>✓ Dedicated AI training</li>
+            <li>✓ API access</li>
+            <li>✓ White-label option</li>
+            <li>✓ 24/7 phone support</li>
+            <li>✓ Custom integrations</li>
+          </ul>
+          <a href="record.html" class="btn btn-secondary" style="width: 100%;">Contact Sales</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Professional Footer -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+          <img src="logo.jpg" alt="NovaVoice" style="width: 36px; height: 36px; object-fit: contain; filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.4)) brightness(1.2) contrast(1.1); mix-blend-mode: screen;">
+          <h4 style="margin: 0;">NovaVoice</h4>
+        </div>
+        <p>Intelligent conversations. Instant help. Always available.</p>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="record.html">Try Demo</a></li>
+          <li><a href="panel.html">Configuration</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:contact@novavoice.ai">contact@novavoice.ai</a></li>
+          <li><a href="#">Support</a></li>
+          <li><a href="#">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <small>© <span id="year"></span> NovaVoice. All rights reserved.</small>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // i18n helper
+    (function(){
+      const DICT = {
+        'Your 24/7 AI Voice Assistant': 'Votre assistant vocal 24/7',
+        'Start Talking Now': 'Commencer à parler',
+        'The Problem': 'Le problème',
+        'Our Solution': 'Notre solution',
+        '24/7 Availability': 'Disponibilité 24/7',
+        'AI-Powered': 'Propulsé par l\'IA',
+        'Instant Response': 'Réponse instantanée',
+        'Secure & Private': 'Sécurisé & Privé',
+        'Multi-Language': 'Multilingue',
+        'Voice First': 'Voix prioritaire',
+        'Natural conversations. Instant help. Always available.': 'Conversations naturelles. Aide instantanée. Disponible en permanence.',
+        'Try Demo': 'Essayer la démo',
+        'Configuration': 'Configuration',
+        'Documentation': 'Documentation'
+      };
+
+      function translateIndex(){
+        try{
+          const lang = localStorage.getItem('ui_lang') || (navigator.language && navigator.language.toLowerCase().startsWith('fr') ? 'fr' : 'en');
+          if(lang!=='fr') return;
+          document.querySelectorAll('h1, h2, h3, p, a').forEach(el=>{
+            const txt = el.textContent.trim();
+            if(DICT[txt]) el.textContent = DICT[txt];
+          });
+          document.documentElement.lang = 'fr';
+        }catch(e){
+          console.warn('index i18n failed', e);
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', translateIndex);
+    })();
+  </script>
+</body>
+</html>

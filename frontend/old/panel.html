@@ -1,0 +1,596 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Configuration Panel | Your 24/7 AI Voice Assistant</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    .panel-header { text-align:left; padding:36px 0 8px; }
+    .panel-header h1 { margin:0 0 6px; font-size:1.6rem; }
+    .panel-header p { margin:0; color:var(--muted); }
+    .muted { color:var(--muted); }
+    @media (max-width:900px){ nav[aria-label] { display:none; } }
+  </style>
+</head>
+<body>
+  <header class="container panel-header">
+    <h1>AI Agent Configuration</h1>
+    <p>Warm, helpful, and on your side — configure the assistant for your business.</p>
+    <a class="btn" href="index.html" style="margin-top:8px;">← Back to Home</a>
+  </header>
+
+  <main class="container" id="panel_main">
+    <div style="display:flex; gap:20px; align-items:flex-start;">
+      <nav aria-label="Section navigation" style="width:260px; position:sticky; top:18px; align-self:flex-start;">
+        <div class="card" style="padding:12px 14px;">
+          <strong style="display:block; margin-bottom:8px;">Sections</strong>
+          <ul style="list-style:none; margin:0; padding:0; display:block; gap:6px;">
+            <li><a class="nav-link" href="#welcome">Welcome</a></li>
+            <li><a class="nav-link" href="#branding">Branding</a></li>
+            <li><a class="nav-link" href="#capabilities">Capabilities</a></li>
+            <li><a class="nav-link" href="#quotes">Quotes / Devis</a></li>
+            <li><a class="nav-link" href="#appointments">Appointments</a></li>
+            <li><a class="nav-link" href="#tech">Technical</a></li>
+            <li><a class="nav-link" href="#knowledge">Knowledge</a></li>
+            <li><a class="nav-link" href="#feedback">Feedback</a></li>
+            <li><a class="nav-link" href="#safeguards">Safeguards</a></li>
+            <li><a class="nav-link" href="#privacy">Privacy</a></li>
+            <li><a class="nav-link" href="#storage">Storage</a></li>
+            <li><a class="nav-link" href="#escalation">Escalation</a></li>
+            <li><a class="nav-link" href="#analytics">Analytics</a></li>
+            <li><a class="nav-link" href="#presets">Presets</a></li>
+            <li><a class="nav-link" href="#integrations">Integrations</a></li>
+            <li><a class="nav-link" href="#sandbox">Sandbox</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <section style="flex:1;">
+        <form id="agent_form">
+
+          <!-- Welcome -->
+          <section id="welcome" class="section-card" aria-labelledby="welcome_title">
+            <h2 id="welcome_title">Welcome — Quick Start</h2>
+            <p class="subtitle" style="margin:6px 0 12px;">Follow four simple steps to get your agent speaking like you.</p>
+
+            <div class="info-box" role="region" aria-live="polite">
+              <strong>Checklist</strong>
+              <ul style="margin:8px 0 0; padding-left:16px; color:var(--muted);">
+                <li><input type="checkbox" id="chk_branding" /> <label for="chk_branding">Branding — name, avatar, tone</label></li>
+                <li><input type="checkbox" id="chk_capabilities" /> <label for="chk_capabilities">Capabilities — what the agent can do</label></li>
+                <li><input type="checkbox" id="chk_safeguards" /> <label for="chk_safeguards">Safeguards — keep risky actions safe</label></li>
+                <li><input type="checkbox" id="chk_test" /> <label for="chk_test">Test — try a scenario in the sandbox</label></li>
+              </ul>
+              <div style="margin-top:10px;"><button type="button" class="btn" id="fill_preset_btn">Fill with a preset</button></div>
+            </div>
+          </section>
+
+          <!-- Branding -->
+          <section id="branding" class="section-card" aria-labelledby="branding_title">
+            <h2 id="branding_title">Branding</h2>
+            <p class="subtitle">This is how customers will see and hear your assistant.</p>
+
+            <div class="form-group">
+              <label for="agent_name">Agent name</label>
+              <input id="agent_name" name="branding.name" type="text" required placeholder="e.g., Alex, Support Bot" />
+              <div class="muted" style="color:var(--muted); margin-top:6px;">Customers will hear/see this name.</div>
+            </div>
+
+            <div class="form-row">
+              <div>
+                <label for="avatar_file">Avatar</label>
+                <input id="avatar_file" name="branding.avatar" type="file" accept="image/*" aria-label="Upload avatar" />
+                <div style="margin-top:8px;">Preview:</div>
+                <div style="margin-top:8px;">
+                  <img id="avatar_preview" alt="avatar preview" style="width:72px;height:72px;border-radius:50%;object-fit:cover;border:1px solid var(--border);background:var(--card);" src="" />
+                </div>
+              </div>
+
+              <div>
+                <label for="tone">Tone & feel</label>
+                <select id="tone" name="branding.tone">
+                  <option value="friendly">Friendly</option>
+                  <option value="professional">Professional</option>
+                  <option value="playful">Playful</option>
+                  <option value="empathetic">Empathetic</option>
+                </select>
+                <div class="muted" style="color:var(--muted); margin-top:6px;">Choose how your agent should sound.</div>
+
+                <label for="response_speed" style="margin-top:12px; display:block;">Response speed</label>
+                <select id="response_speed" name="branding.response_speed">
+                  <option value="instant">Instant</option>
+                  <option value="fast">Fast</option>
+                  <option value="balanced" selected>Balanced</option>
+                </select>
+                <div class="muted" style="color:var(--muted); margin-top:6px;">Faster replies feel quicker; balanced is a good default.</div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="greeting">Greeting</label>
+                <input id="greeting" name="branding.greeting" placeholder="Hi! How can I help you today?" />
+                <div class="muted" style="color:var(--muted);">Short greeting customers hear at the start of a call.</div>
+              </div>
+              <div class="form-group">
+                <label for="signoff">Sign-off</label>
+                <input id="signoff" name="branding.signoff" placeholder="Thanks — have a great day!" />
+                <div class="muted" style="color:var(--muted);">Polite closing phrase for the agent.</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="primary_lang">Primary language</label>
+              <select id="primary_lang" name="branding.primary_lang">
+                <option value="en">English</option>
+                <option value="fr">Français</option>
+                <option value="es">Español</option>
+                <option value="de">Deutsch</option>
+                <option value="ru">Русский</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Other languages</label>
+              <div class="checkbox-group" role="group" aria-label="Other languages">
+                <label class="checkbox-item"><input type="checkbox" name="branding.langs[]" value="en" checked /> EN</label>
+                <label class="checkbox-item"><input type="checkbox" name="branding.langs[]" value="fr" /> FR</label>
+                <label class="checkbox-item"><input type="checkbox" name="branding.langs[]" value="es" /> ES</label>
+                <label class="checkbox-item"><input type="checkbox" name="branding.langs[]" value="de" /> DE</label>
+                <label class="checkbox-item"><input type="checkbox" name="branding.langs[]" value="ru" /> RU</label>
+              </div>
+            </div>
+
+            <details style="margin-top:12px;"><summary>Advanced</summary>
+              <div style="margin-top:12px;">
+                <label for="brand_primary">Brand primary color</label>
+                <input id="brand_primary" name="branding.brand_primary" type="color" value="#5b8cff" />
+                <label for="brand_accent" style="margin-top:10px; display:block;">Brand accent color</label>
+                <input id="brand_accent" name="branding.brand_accent" type="color" value="#7aa2ff" />
+              </div>
+            </details>
+          </section>
+
+          <!-- Capabilities -->
+          <section id="capabilities" class="section-card" aria-labelledby="cap_title">
+            <h2 id="cap_title">Capabilities</h2>
+            <p class="subtitle">Pick what your agent can do. For sensitive tasks, we'll ask first by default.</p>
+
+            <div class="form-group">
+              <strong>Automatic actions</strong>
+              <div style="margin-top:8px;">
+                <label class="checkbox-item"><input type="checkbox" name="capabilities.password_reset" /> Password resets <span class="muted">(reset a forgotten password)</span></label>
+                <label class="checkbox-item"><input type="checkbox" name="capabilities.troubleshoot" checked /> Basic troubleshooting <span class="muted">(guided steps)</span></label>
+                <label class="checkbox-item"><input type="checkbox" name="capabilities.account_info" checked /> Account info</label>
+                <label class="checkbox-item"><input type="checkbox" name="capabilities.service_status" checked /> Service status</label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <strong>Conditional actions</strong>
+              <div style="margin-top:8px;">
+                <div style="display:flex; gap:12px; align-items:center; margin-bottom:8px;">
+                  <label style="flex:1;"><input type="checkbox" name="capabilities.schedule" /> Schedule appointments</label>
+                  <label class="checkbox-item">Ask first <input type="checkbox" name="capabilities.ask_schedule" checked /></label>
+                </div>
+
+                <div style="display:flex; gap:12px; align-items:center; margin-bottom:8px;">
+                  <label style="flex:1;"><input type="checkbox" name="capabilities.plan_change" /> Service plan change</label>
+                  <label class="checkbox-item">Ask first <input type="checkbox" name="capabilities.ask_plan_change" checked /></label>
+                </div>
+
+                <div style="display:flex; gap:12px; align-items:center; margin-bottom:8px;">
+                  <label style="flex:1;"><input type="checkbox" name="capabilities.refund" /> Process refunds</label>
+                  <label class="checkbox-item">Ask first <input type="checkbox" name="capabilities.ask_refund" checked /></label>
+                </div>
+
+                <div style="display:flex; gap:12px; align-items:center; margin-bottom:8px;">
+                  <label style="flex:1;"><input type="checkbox" name="capabilities.cancel_service" /> Cancel service</label>
+                  <label class="checkbox-item">Ask first <input type="checkbox" name="capabilities.ask_cancel" checked /></label>
+                </div>
+
+                <div style="display:flex; gap:12px; align-items:center;">
+                  <label style="flex:1;"><input type="checkbox" name="capabilities.create_quote" /> Create quote (devis)</label>
+                  <label class="checkbox-item">Ask first <input type="checkbox" name="capabilities.ask_quote" checked /></label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <strong>Human-only</strong>
+              <div class="muted" style="margin-top:8px;">Billing disputes and legal requests must be handled by a human. The agent will always escalate these.</div>
+            </div>
+
+            <div class="form-group">
+              <label for="impact_cap_eur">Per-action spend/impact limit (€)</label>
+              <input id="impact_cap_eur" name="capabilities.impact_cap_eur" type="number" min="0" value="0" />
+              <div class="muted" style="margin-top:6px;">Set to 0 to require approval for any monetary action.</div>
+            </div>
+          </section>
+
+          <!-- Quotes -->
+          <section id="quotes" class="section-card" aria-labelledby="quotes_title">
+            <h2 id="quotes_title">Quotes / Devis</h2>
+            <div class="form-group">
+              <label><input type="checkbox" id="quotes_enabled" name="quotes.enabled" /> Enable quotes</label>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="quotes_currency">Currency</label>
+                <input id="quotes_currency" name="quotes.currency" value="EUR" />
+              </div>
+              <div class="form-group">
+                <label for="quotes_vat">VAT %</label>
+                <input id="quotes_vat" name="quotes.vat" type="number" min="0" max="100" value="20" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Items</label>
+              <div id="quotes_items">
+                <div class="quote-item" style="display:flex; gap:8px; margin-bottom:8px;">
+                  <input name="quotes.item_name" placeholder="Service name" />
+                  <input name="quotes.item_unit" placeholder="Unit" style="width:80px;" />
+                  <input name="quotes.item_price" placeholder="Price" style="width:110px;" />
+                </div>
+              </div>
+              <div style="margin-top:8px;"><button type="button" id="quotes_add_item" class="btn">Add item</button></div>
+              <div style="margin-top:8px;"><button type="button" id="quotes_preview_btn" class="btn">Preview total</button> <span id="quotes_total" style="margin-left:12px;color:var(--muted);"></span></div>
+            </div>
+
+            <div class="form-group">
+              <label for="quotes_email_subject">Email subject</label>
+              <input id="quotes_email_subject" name="quotes.email_subject" placeholder="Quote for {{customer_name}}" />
+            </div>
+            <div class="form-group">
+              <label for="quotes_email_body">Email body</label>
+              <textarea id="quotes_email_body" name="quotes.email_body" placeholder="Hello {{customer_name}},\nYour total is {{total}}."></textarea>
+            </div>
+
+            <div class="form-group">
+              <label><input type="checkbox" name="quotes.require_human" checked /> Require human confirmation before sending</label>
+            </div>
+          </section>
+
+          <!-- Appointments -->
+          <section id="appointments" class="section-card" aria-labelledby="appts_title">
+            <h2 id="appts_title">Appointments</h2>
+            <div class="form-group">
+              <label><input type="checkbox" id="appts_enabled" name="appointments.enabled" /> Enable appointments</label>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="appts_provider">Provider</label>
+                <select id="appts_provider" name="appointments.provider">
+                  <option value="google">Google Calendar</option>
+                  <option value="outlook">Outlook</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="appts_calendar">Calendar ID</label>
+                <input id="appts_calendar" name="appointments.calendar_id" placeholder="primary" />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="appts_len">Default duration (minutes)</label>
+                <input id="appts_len" name="appointments.duration_min" type="number" min="5" value="30" />
+              </div>
+              <div class="form-group">
+                <label for="appts_buffer">Buffer before/after (minutes)</label>
+                <input id="appts_buffer" name="appointments.buffer_min" type="number" min="0" value="10" />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="appts_reminder">Reminder (minutes before)</label>
+                <input id="appts_reminder" name="appointments.reminder_min" type="number" min="0" value="60" />
+              </div>
+              <div class="form-group">
+                <label><input type="checkbox" name="appointments.prevent_double_booking" /> Double-booking guard</label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="appts_confirm_msg">Confirmation message (SMS/email)</label>
+              <textarea id="appts_confirm_msg" name="appointments.confirm_message" placeholder="Thanks {{customer_name}}, your booking is confirmed for {{date}} at {{time}}."></textarea>
+            </div>
+          </section>
+
+          <!-- Remaining sections (light hooks) -->
+          <section id="tech" class="section-card"><h3>Technical Assistance</h3>
+            <div class="muted">(Diagnostics, troubleshooting steps, and ticket creation.)</div>
+            <div style="margin-top:12px;"><textarea id="diag_tools_json" name="tech.diag_tools_json" placeholder='[{"name":"ping","url":"https://...","method":"GET"}]' style="min-height:90px;"></textarea></div>
+          </section>
+
+          <section id="knowledge" class="section-card"><h3>Knowledge & FAQs</h3>
+            <div class="muted">(Upload docs, configure KB search, and manage FAQs.)</div>
+            <div style="margin-top:12px;"><input type="url" id="kb_url" name="knowledge.kb_url" placeholder="KB search endpoint" /></div>
+            <div style="margin-top:8px;"><label><input type="checkbox" name="knowledge.include_citations" /> Include citations in answers</label></div>
+          </section>
+
+          <section id="feedback" class="section-card"><h3>Feedback</h3>
+            <label><input type="checkbox" name="feedback.collect_rating" /> Collect post-call rating</label>
+            <div style="margin-top:8px;"><label for="feedback_email">Owner email</label><input id="feedback_email" name="feedback.email" type="email" /></div>
+            <div style="margin-top:8px;"><button type="button" id="feedback_export_btn" class="btn">Export feedback CSV</button></div>
+          </section>
+
+          <section id="safeguards" class="section-card"><h3>Safeguards</h3>
+            <p class="muted">We keep you in control. We’ll ask first before refunds or plan changes.</p>
+            <div style="margin-top:8px;"><label><input type="checkbox" name="safeguards.ask_before_risky" checked /> Ask before risky actions</label></div>
+            <div style="margin-top:8px;"><label for="risk_cap_eur">Max monetary impact without approval (€)</label><input id="risk_cap_eur" name="safeguards.risk_cap_eur" type="number" min="0" value="0" /></div>
+            <div style="margin-top:8px;"><label for="escalate_uncertainty">Escalate when unsure</label>
+              <input id="escalate_uncertainty" name="safeguards.escalate_uncertainty" type="range" min="0" max="100" value="60" /> <span id="escalate_value" class="slider-value">60</span></div>
+            <div style="margin-top:8px;"><label for="blocked_phrases">Blocked phrases/topics</label><textarea id="blocked_phrases" name="safeguards.blocked_phrases" placeholder="e.g., cancel my account, sue"></textarea></div>
+          </section>
+
+          <section id="privacy" class="section-card"><h3>Data & Privacy</h3>
+            <div class="muted">Your data stays yours. Choose what to keep and for how long.</div>
+            <div style="margin-top:8px;"><label><input type="checkbox" name="privacy.consent_prompt" /> Show consent prompt</label></div>
+            <div style="margin-top:8px;"><label for="retention_days">Retention days (0 = don't keep)</label><input id="retention_days" name="privacy.retention_days" type="number" min="0" value="0" /></div>
+            <div style="margin-top:8px;"><label for="data_residency">Data residency</label><select id="data_residency" name="privacy.data_residency"><option value="eu">EU</option><option value="us">US</option></select></div>
+          </section>
+
+          <section id="storage" class="section-card"><h3>Storage & Snaps</h3>
+            <label><input type="checkbox" name="storage.on_demand" /> Store parts of conversations on demand</label>
+            <div style="margin-top:8px;"><button type="button" id="snaps_export_btn" class="btn">Export top questions</button></div>
+          </section>
+
+          <section id="escalation" class="section-card"><h3>Escalation</h3>
+            <div class="muted">Configure business hours and queues for escalation.</div>
+            <div style="margin-top:8px;"><label for="escalate_after_minutes">Auto-escalate after (minutes)</label><input id="escalate_after_minutes" name="escalation.after_minutes" type="number" min="0" value="15" /></div>
+          </section>
+
+          <section id="analytics" class="section-card"><h3>Analytics</h3>
+            <div class="muted">Use insights to improve your FAQs and flows.</div>
+            <div style="margin-top:8px; display:flex; gap:8px;"><button type="button" class="btn">7d</button><button type="button" class="btn">30d</button><button type="button" class="btn">90d</button></div>
+          </section>
+
+          <section id="presets" class="section-card"><h3>Industry Presets</h3>
+            <div style="display:grid; gap:10px; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">
+              <div class="card"><strong>Services (hairdresser)</strong><div class="muted">Appointments on, friendly tone.</div><div style="margin-top:8px;"><button type="button" class="btn preset-btn" data-preset="services">Apply</button></div></div>
+              <div class="card"><strong>Retail</strong><div class="muted">Order status & returns.</div><div style="margin-top:8px;"><button type="button" class="btn preset-btn" data-preset="retail">Apply</button></div></div>
+              <div class="card"><strong>Restaurant</strong><div class="muted">Reservations & opening hours.</div><div style="margin-top:8px;"><button type="button" class="btn preset-btn" data-preset="restaurant">Apply</button></div></div>
+              <div class="card"><strong>IT & SaaS</strong><div class="muted">Troubleshooting & outages.</div><div style="margin-top:8px;"><button type="button" class="btn preset-btn" data-preset="it">Apply</button></div></div>
+            </div>
+          </section>
+
+          <section id="integrations" class="section-card"><h3>Integrations</h3>
+            <div style="margin-top:8px;"><label for="webhook_url">Webhook URL</label><input id="webhook_url" name="integrations.webhook" type="url" /></div>
+            <div style="margin-top:8px;"><label for="email_from">Email from</label><input id="email_from" name="integrations.email_from" type="email" /></div>
+          </section>
+
+          <section id="sandbox" class="section-card"><h3>Sandbox</h3>
+            <p class="muted">Try a quick scenario to hear your agent in action.</p>
+            <div style="margin-top:8px;"><a class="btn" href="record.html" target="_blank">Open Call Simulator</a></div>
+          </section>
+
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <!-- Sticky action bar -->
+  <div style="position:fixed; left:0; right:0; bottom:0; background:linear-gradient(180deg, rgba(11,13,18,0.9), rgba(11,13,18,1)); border-top:1px solid var(--border); padding:12px 16px;">
+    <div class="container" style="display:flex; gap:12px; align-items:center; justify-content:space-between;">
+      <div style="display:flex; gap:8px; align-items:center;">
+        <button id="save_btn" class="save-btn">Save</button>
+        <button id="reset_btn" class="btn">Reset</button>
+        <button id="export_btn" class="btn">Export JSON</button>
+        <label for="import_file" class="btn" style="cursor:pointer;">Import JSON</label>
+        <input id="import_file" name="import_file" type="file" accept="application/json" style="display:none;" />
+        <button id="deploy_btn" class="btn">Deploy</button>
+      </div>
+      <div style="color:var(--muted); display:flex; gap:12px; align-items:center;">
+        <span id="save_status" aria-live="polite">Not saved</span>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer container" style="margin-top:140px;">
+    <div class="footer-grid">
+      <div>
+        <h4>About</h4>
+        <p class="muted">Demo AI assistant for small and mid-sized businesses.</p>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="record.html">Call simulator</a></li>
+          <li><a href="panel-v01.html">Advanced panel (v01)</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p class="muted">support@example.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom">© <span id="year">2025</span> Your AI Assistant</div>
+  </footer>
+
+  <script>
+    // Small helpers: serialize form (dot-notation) and handle repeated names
+    function serializeForm(form) {
+      const data = {};
+      const formData = new FormData(form);
+      for (const [rawName, value] of formData.entries()) {
+        const name = rawName.replace(/\[\]$/, '');
+        if (data.hasOwnProperty(name)) {
+          if (!Array.isArray(data[name])) data[name] = [data[name]];
+          data[name].push(value);
+        } else {
+          data[name] = value;
+        }
+      }
+      const out = {};
+      for (const key in data) {
+        const parts = key.split('.');
+        let cur = out;
+        for (let i=0;i<parts.length;i++){
+          const p = parts[i];
+          if (i===parts.length-1) {
+            cur[p] = data[key];
+          } else {
+            cur[p] = cur[p] || {};
+            cur = cur[p];
+          }
+        }
+      }
+      return out;
+    }
+
+    function populateForm(form, obj, prefix=''){
+      for (const k in obj) {
+        const full = prefix ? (prefix + '.' + k) : k;
+        const v = obj[k];
+        if (v && typeof v === 'object' && !Array.isArray(v)) {
+          populateForm(form, v, full);
+        } else {
+          const sel = '[name="'+full+'"],[name="'+full+'[]"]';
+          const els = form.querySelectorAll(sel);
+          if (!els || els.length===0) continue;
+          if (Array.isArray(v)) {
+            els.forEach((el, idx) => {
+              if (el.type === 'checkbox') {
+                el.checked = v.includes(el.value);
+              } else {
+                el.value = v[idx] !== undefined ? v[idx] : v[0];
+              }
+            });
+          } else {
+            els.forEach(el => {
+              if (el.type==='checkbox') el.checked = (v==='on' || v===true || el.value===v);
+              else el.value = v;
+            });
+          }
+        }
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function(){
+      const form = document.getElementById('agent_form');
+      const saveBtn = document.getElementById('save_btn');
+      const resetBtn = document.getElementById('reset_btn');
+      const exportBtn = document.getElementById('export_btn');
+      const importFile = document.getElementById('import_file');
+      const saveStatus = document.getElementById('save_status');
+      const fillPreset = document.getElementById('fill_preset_btn');
+      const avatarFile = document.getElementById('avatar_file');
+      const avatarPreview = document.getElementById('avatar_preview');
+      const quotesAdd = document.getElementById('quotes_add_item');
+      const quotesItems = document.getElementById('quotes_items');
+      const quotesPreviewBtn = document.getElementById('quotes_preview_btn');
+      const quotesTotal = document.getElementById('quotes_total');
+      const escalateRange = document.getElementById('escalate_uncertainty');
+      const escalateValue = document.getElementById('escalate_value');
+
+      if (avatarFile) avatarFile.addEventListener('change', e=>{
+        const f = e.target.files && e.target.files[0];
+        if (!f) return;
+        const reader = new FileReader();
+        reader.onload = () => avatarPreview.src = reader.result;
+        reader.readAsDataURL(f);
+      });
+
+      if (quotesAdd) quotesAdd.addEventListener('click', ()=>{
+        const row = document.createElement('div');
+        row.className = 'quote-item';
+        row.style.display = 'flex'; row.style.gap = '8px'; row.style.marginBottom='8px';
+        row.innerHTML = '<input name="quotes.item_name" placeholder="Service name" /> <input name="quotes.item_unit" placeholder="Unit" style="width:80px;" /> <input name="quotes.item_price" placeholder="Price" style="width:110px;" /> <button type="button" class="btn remove-quote">Remove</button>';
+        quotesItems.appendChild(row);
+        row.querySelector('.remove-quote').addEventListener('click', ()=>row.remove());
+      });
+
+      if (quotesPreviewBtn) quotesPreviewBtn.addEventListener('click', ()=>{
+        const prices = Array.from(quotesItems.querySelectorAll('[name="quotes.item_price"]'))
+          .map(i=>parseFloat(i.value || '0'));
+        const total = prices.reduce((s,n)=>s+(isNaN(n)?0:n),0);
+        quotesTotal.textContent = 'Total: ' + total.toFixed(2) + ' ' + (document.getElementById('quotes_currency')?.value || 'EUR');
+      });
+
+      if (escalateRange && escalateValue) {
+        escalateValue.textContent = escalateRange.value;
+        escalateRange.addEventListener('input', ()=>escalateValue.textContent = escalateRange.value);
+      }
+
+      saveBtn.addEventListener('click', ()=>{
+        const json = serializeForm(form);
+        localStorage.setItem('ai_agent_config', JSON.stringify(json));
+        saveStatus.textContent = 'Saved';
+        setTimeout(()=>saveStatus.textContent='Saved ✓',300);
+      });
+
+      resetBtn.addEventListener('click', ()=>{
+        if (!confirm('Reset all settings to defaults?')) return;
+        localStorage.removeItem('ai_agent_config');
+        form.reset();
+        avatarPreview.src = '';
+        saveStatus.textContent = 'Not saved';
+      });
+
+      exportBtn.addEventListener('click', ()=>{
+        const json = serializeForm(form);
+        const blob = new Blob([JSON.stringify(json, null, 2)], {type:'application/json'});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url; a.download = 'agent-config.json'; a.click();
+        URL.revokeObjectURL(url);
+      });
+
+      importFile.addEventListener('change', e=>{
+        const f = e.target.files && e.target.files[0];
+        if (!f) return;
+        const reader = new FileReader();
+        reader.onload = ()=>{
+          try {
+            const obj = JSON.parse(reader.result);
+            populateForm(form, obj);
+            saveStatus.textContent = 'Imported (unsaved)';
+          } catch(err){ alert('Invalid JSON file'); }
+        };
+        reader.readAsText(f);
+      });
+
+      if (fillPreset) fillPreset.addEventListener('click', ()=>{
+        document.getElementById('presets').scrollIntoView({behavior:'smooth'});
+      });
+
+      document.querySelectorAll('.preset-btn').forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          const p = btn.dataset.preset;
+          if (p==='services') {
+            populateForm(form, {branding:{tone:'friendly'}, appointments:{enabled:'on'}, quotes:{enabled:''}, safeguards:{ask_before_risky:'on'}});
+          } else if (p==='retail') {
+            populateForm(form, {branding:{tone:'helpful'}, appointments:{enabled:''}, quotes:{enabled:'on'}});
+          } else if (p==='restaurant') {
+            populateForm(form, {branding:{tone:'friendly'}, appointments:{enabled:'on'}});
+          } else if (p==='it') {
+            populateForm(form, {branding:{tone:'professional'}, capabilities:{troubleshoot:'on', service_status:'on'}});
+          }
+          saveStatus.textContent = 'Preset applied (unsaved)';
+        });
+      });
+
+      const saved = localStorage.getItem('ai_agent_config');
+      if (saved) {
+        try { populateForm(form, JSON.parse(saved)); saveStatus.textContent='Loaded from last save'; }
+        catch(e){ console.warn('Could not parse saved config'); }
+      }
+
+      document.querySelectorAll('.nav-link').forEach(a=>{
+        a.addEventListener('click', ()=>{
+          document.querySelectorAll('.nav-link').forEach(n=>n.style.color='');
+          a.style.color = 'var(--brand)';
+        });
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,623 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Configuration Panel | Your 24/7 AI Voice Assistant</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    .panel-header { 
+      text-align: left; 
+      padding: 48px 0 28px;
+    }
+    .panel-header h1 {
+      font-size: 2rem;
+      margin: 0 0 8px;
+    }
+    .panel-header p {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 28px;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      padding: 12px 18px;
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      font-weight: 600;
+      transition: color .2s ease;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+    }
+    .tab-btn:hover {
+      color: var(--fg);
+    }
+    .tab-btn.active {
+      color: var(--brand);
+      border-bottom-color: var(--brand);
+    }
+
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+
+    .form-group {
+      margin-bottom: 28px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--fg);
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--fg);
+      font-family: inherit;
+      font-size: 1rem;
+      transition: border-color .2s ease;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--brand);
+      box-shadow: 0 0 0 2px rgba(91, 140, 255, 0.1);
+    }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    @media (max-width: 768px) {
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    .checkbox-group {
+      display: flex;
+      gap: 16px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+    .checkbox-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .checkbox-item input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+    .checkbox-item label {
+      margin: 0;
+      cursor: pointer;
+      font-weight: 400;
+    }
+
+    .slider-group {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 12px;
+    }
+    .slider-group input[type="range"] {
+      flex: 1;
+      cursor: pointer;
+    }
+    .slider-value {
+      min-width: 50px;
+      text-align: right;
+      color: var(--brand);
+      font-weight: 600;
+    }
+
+    .section-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--fg);
+      margin: 24px 0 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .save-btn {
+      background: linear-gradient(135deg, var(--brand), #7aa2ff);
+      color: #0b0d12;
+      padding: 14px 28px;
+      border: none;
+      border-radius: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform .08s ease, box-shadow .2s ease;
+      box-shadow: 0 10px 24px rgba(91, 140, 255, .25);
+    }
+    .save-btn:hover {
+      transform: translateY(-1px);
+    }
+    .save-btn:active {
+      transform: translateY(0);
+    }
+
+    .form-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .info-box {
+      background: rgba(91, 140, 255, 0.1);
+      border-left: 3px solid var(--brand);
+      padding: 16px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .section-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 24px;
+      border-radius: 14px;
+      margin-bottom: 24px;
+    }
+  </style>
+</head>
+<body>
+  <header class="container panel-header">
+    <h1>AI Agent Configuration</h1>
+    <p>Customize your 24/7 technical support assistant to match your business needs</p>
+    <a class="btn" href="index.html" style="margin-top: 16px;">← Back to Home</a>
+  </header>
+
+  <main class="container">
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="personality">Personality</button>
+      <button class="tab-btn" data-tab="capabilities">Capabilities</button>
+      <button class="tab-btn" data-tab="escalation">Escalation</button>
+      <button class="tab-btn" data-tab="analytics">Analytics</button>
+    </div>
+
+    <!-- PERSONALITY TAB -->
+    <div id="personality" class="tab-content active">
+      <div class="info-box">
+        💡 Define how your AI agent communicates with customers. These settings affect tone, responsiveness, and communication style.
+      </div>
+
+      <form id="personalityForm">
+        <div class="section-card">
+          <h2 style="margin-top: 0;">Communication Style</h2>
+
+          <div class="form-group">
+            <label>Agent Name</label>
+            <input type="text" id="agentName" value="TechBot" placeholder="e.g., TechBot, Alex, Support Agent">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Personality Type</label>
+              <select id="personalityType">
+                <option value="professional">Professional & Formal</option>
+                <option value="friendly">Friendly & Approachable</option>
+                <option value="technical">Technical & Detailed</option>
+                <option value="concise">Concise & Direct</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Response Speed</label>
+              <select id="responseSpeed">
+                <option value="instant">Instant (< 1 second)</option>
+                <option value="normal">Normal (1-2 seconds)</option>
+                <option value="thoughtful">Thoughtful (2-3 seconds)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Custom Greeting</label>
+            <input type="text" id="customGreeting" value="Thank you for calling. How can I assist you today?" placeholder="Your custom greeting message">
+          </div>
+
+          <div class="form-group">
+            <label>Custom Sign-off</label>
+            <input type="text" id="customSignOff" value="Thank you for contacting us. Have a great day!" placeholder="Your closing message">
+          </div>
+
+          <div class="section-title">Language Settings</div>
+
+          <div class="form-group">
+            <label>Primary Language</label>
+            <select id="primaryLanguage">
+              <option value="en">English</option>
+              <option value="es">Spanish</option>
+              <option value="fr">French</option>
+              <option value="de">German</option>
+              <option value="it">Italian</option>
+              <option value="pt">Portuguese</option>
+              <option value="ja">Japanese</option>
+              <option value="zh">Chinese</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Supported Languages (Multi-language support)</label>
+            <div class="checkbox-group">
+              <div class="checkbox-item">
+                <input type="checkbox" id="lang_en" checked>
+                <label for="lang_en">English</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="lang_es">
+                <label for="lang_es">Spanish</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="lang_fr">
+                <label for="lang_fr">French</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="lang_de">
+                <label for="lang_de">German</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="save-btn" onclick="savePersonality()">Save Personality Settings</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- CAPABILITIES TAB -->
+    <div id="capabilities" class="tab-content">
+      <div class="info-box">
+        🔧 Configure what actions your AI agent can perform automatically. Complex tasks can be escalated to human technicians.
+      </div>
+
+      <form id="capabilitiesForm">
+        <div class="section-card">
+          <h2 style="margin-top: 0;">Service Capabilities</h2>
+
+          <div class="section-title">Automatic Actions (No Human Confirmation Needed)</div>
+
+          <div class="checkbox-group">
+            <div class="checkbox-item">
+              <input type="checkbox" id="cap_password_reset" checked>
+              <label for="cap_password_reset">Password Resets</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="cap_basic_troubleshooting" checked>
+              <label for="cap_basic_troubleshooting">Basic Troubleshooting</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="cap_account_info" checked>
+              <label for="cap_account_info">Account Information Lookup</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="cap_bill_inquiry">
+              <label for="cap_bill_inquiry">Billing Inquiries</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="cap_service_status">
+              <label for="cap_service_status">Service Status Checks</label>
+            </div>
+          </div>
+
+          <div class="section-title">Conditional Actions (May Require Human Confirmation)</div>
+
+          <div class="checkbox-group">
+            <div class="checkbox-item">
+              <input type="checkbox" id="cap_schedule_appointment">
+              <label for="cap_schedule_appointment">Schedule Appointments</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="cap_service_changes">
+              <label for="cap_service_changes">Service Plan Changes</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="cap_refunds">
+              <label for="cap_refunds">Process Refunds</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="cap_cancel_service">
+              <label for="cap_cancel_service">Cancel Service</label>
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-top: 24px;">
+            <label>Actions Requiring Human Confirmation</label>
+            <select id="humanConfirmationLevel" multiple style="height: 120px;">
+              <option value="refunds">Refunds over $50</option>
+              <option value="cancel">Service Cancellations</option>
+              <option value="plan_changes">Plan Changes</option>
+              <option value="billing_disputes">Billing Disputes</option>
+              <option value="special_requests">Special Requests</option>
+            </select>
+          </div>
+
+          <div class="section-title">Escalation Triggers</div>
+
+          <div class="form-group">
+            <label>Automatically Escalate After (minutes of conversation)</label>
+            <div class="slider-group">
+              <input type="range" id="escalationTimeout" min="1" max="15" value="5" style="width: 200px;">
+              <span class="slider-value"><span id="escalationTimeoutVal">5</span> min</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Customer Satisfaction Threshold for Escalation</label>
+            <div class="slider-group">
+              <input type="range" id="satisfactionThreshold" min="1" max="10" value="5" style="width: 200px;">
+              <span class="slider-value"><span id="satisfactionThresholdVal">5</span>/10</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="save-btn" onclick="saveCapabilities()">Save Capabilities</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- ESCALATION TAB -->
+    <div id="escalation" class="tab-content">
+      <div class="info-box">
+        👤 Configure how and when calls are escalated to human technicians, and set up your support team.
+      </div>
+
+      <form id="escalationForm">
+        <div class="section-card">
+          <h2 style="margin-top: 0;">Escalation Settings</h2>
+
+          <div class="section-title">Support Team</div>
+
+          <div class="form-group">
+            <label>Support Team Email Address</label>
+            <input type="email" id="teamEmail" value="support@company.com" placeholder="team@company.com">
+          </div>
+
+          <div class="form-group">
+            <label>Escalation Queue</label>
+            <select id="escalationQueue">
+              <option value="priority">Priority Queue (Immediate)</option>
+              <option value="standard">Standard Queue (5-10 min)</option>
+              <option value="scheduled">Scheduled Callback (Next Available)</option>
+            </select>
+          </div>
+
+          <div class="section-title">Escalation Reasons</div>
+
+          <div class="checkbox-group">
+            <div class="checkbox-item">
+              <input type="checkbox" id="esc_unknown_issue" checked>
+              <label for="esc_unknown_issue">Unknown Issue</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="esc_customer_request" checked>
+              <label for="esc_customer_request">Customer Request</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="esc_complex_billing" checked>
+              <label for="esc_complex_billing">Complex Billing Issue</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="esc_special_case" checked>
+              <label for="esc_special_case">Special Case/Exception</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="esc_angry_customer">
+              <label for="esc_angry_customer">Detect Frustrated Customer</label>
+            </div>
+          </div>
+
+          <div class="section-title">Business Hours</div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Support Hours (Start)</label>
+              <input type="time" id="supportHourStart" value="09:00">
+            </div>
+            <div class="form-group">
+              <label>Support Hours (End)</label>
+              <input type="time" id="supportHourEnd" value="17:00">
+            </div>
+          </div>
+
+          <div class="checkbox-group">
+            <div class="checkbox-item">
+              <input type="checkbox" id="weekend_support">
+              <label for="weekend_support">Weekend Support Available</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="holidays_support">
+              <label for="holidays_support">Holiday Support Available</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>After-Hours Auto-Response</label>
+            <textarea id="afterHoursMessage" placeholder="We are currently closed. Your call will be queued and handled during business hours...">We are currently closed. Your call will be queued and handled during business hours. Please leave a message.</textarea>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="save-btn" onclick="saveEscalation()">Save Escalation Settings</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- ANALYTICS TAB -->
+    <div id="analytics" class="tab-content">
+      <div class="info-box">
+        📊 View analytics and questions asked by customers to improve your AI agent.
+      </div>
+
+      <div class="section-card">
+        <h2 style="margin-top: 0;">Call Analytics</h2>
+
+        <div class="form-row">
+          <div style="background: rgba(91, 140, 255, 0.1); padding: 20px; border-radius: 8px; border-left: 3px solid var(--brand);">
+            <p style="color: var(--muted); margin: 0 0 8px;">Total Calls</p>
+            <h3 style="margin: 0; color: var(--brand); font-size: 2rem;">1,247</h3>
+          </div>
+          <div style="background: rgba(91, 140, 255, 0.1); padding: 20px; border-radius: 8px; border-left: 3px solid var(--brand);">
+            <p style="color: var(--muted); margin: 0 0 8px;">Resolved by AI</p>
+            <h3 style="margin: 0; color: var(--brand); font-size: 2rem;">78%</h3>
+          </div>
+        </div>
+
+        <div class="form-row" style="margin-top: 16px;">
+          <div style="background: rgba(91, 140, 255, 0.1); padding: 20px; border-radius: 8px; border-left: 3px solid var(--brand);">
+            <p style="color: var(--muted); margin: 0 0 8px;">Escalated to Humans</p>
+            <h3 style="margin: 0; color: var(--brand); font-size: 2rem;">22%</h3>
+          </div>
+          <div style="background: rgba(91, 140, 255, 0.1); padding: 20px; border-radius: 8px; border-left: 3px solid var(--brand);">
+            <p style="color: var(--muted); margin: 0 0 8px;">Avg. Resolution Time</p>
+            <h3 style="margin: 0; color: var(--brand); font-size: 2rem;">2m 34s</h3>
+          </div>
+        </div>
+
+        <div class="section-title">Top Customer Questions</div>
+
+        <table style="width: 100%; border-collapse: collapse; margin-top: 12px;">
+          <thead>
+            <tr style="border-bottom: 2px solid var(--border);">
+              <th style="text-align: left; padding: 12px; color: var(--fg); font-weight: 600;">Question</th>
+              <th style="text-align: center; padding: 12px; color: var(--fg); font-weight: 600;">Count</th>
+              <th style="text-align: center; padding: 12px; color: var(--fg); font-weight: 600;">Resolution Rate</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid var(--border);">
+              <td style="padding: 12px; color: var(--fg);">How do I reset my password?</td>
+              <td style="text-align: center; color: var(--muted);">245</td>
+              <td style="text-align: center; color: var(--brand); font-weight: 600;">95%</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border);">
+              <td style="padding: 12px; color: var(--fg);">Why is my service down?</td>
+              <td style="text-align: center; color: var(--muted);">189</td>
+              <td style="text-align: center; color: var(--brand); font-weight: 600;">78%</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border);">
+              <td style="padding: 12px; color: var(--fg);">How do I upgrade my plan?</td>
+              <td style="text-align: center; color: var(--muted);">156</td>
+              <td style="text-align: center; color: var(--brand); font-weight: 600;">92%</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border);">
+              <td style="padding: 12px; color: var(--fg);">What is my current bill?</td>
+              <td style="text-align: center; color: var(--muted);">134</td>
+              <td style="text-align: center; color: var(--brand); font-weight: 600;">98%</td>
+            </tr>
+            <tr>
+              <td style="padding: 12px; color: var(--fg);">How do I cancel my service?</td>
+              <td style="text-align: center; color: var(--muted);">98</td>
+              <td style="text-align: center; color: var(--brand); font-weight: 600;">35%</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="section-title">Export Data</div>
+
+        <div style="display: flex; gap: 12px; margin-top: 16px;">
+          <button type="button" class="save-btn" onclick="exportAnalytics('csv')">Export as CSV</button>
+          <button type="button" class="save-btn" onclick="exportAnalytics('pdf')">Export as PDF</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <h4>AI Voice Assistant</h4>
+        <p>Natural conversations. Instant help. Always available.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="record.html">Demo</a></li>
+          <li><a href="#">Documentation</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:support@company.com">support@company.com</a></li>
+          <li><a href="#">+1 (555) 123-4567</a></li>
+          <li><a href="#">Follow on X</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <small>© <span id="year"></span> Your Company. All rights reserved.</small>
+    </div>
+  </footer>
+
+  <script>
+    // Tab switching
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tabName = btn.getAttribute('data-tab');
+        document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById(tabName).classList.add('active');
+        btn.classList.add('active');
+      });
+    });
+
+    // Slider value updates
+    document.getElementById('escalationTimeout').addEventListener('input', (e) => {
+      document.getElementById('escalationTimeoutVal').textContent = e.target.value;
+    });
+    document.getElementById('satisfactionThreshold').addEventListener('input', (e) => {
+      document.getElementById('satisfactionThresholdVal').textContent = e.target.value;
+    });
+
+    // Save functions (demo purposes)
+    function savePersonality() {
+      alert('✓ Personality settings saved successfully!');
+    }
+    function saveCapabilities() {
+      alert('✓ Capabilities saved successfully!');
+    }
+    function saveEscalation() {
+      alert('✓ Escalation settings saved successfully!');
+    }
+    function exportAnalytics(format) {
+      alert(`✓ Analytics exported as ${format.toUpperCase()}!`);
+    }
+
+    // Set year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

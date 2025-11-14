@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Call Recorder | Your 24/7 AI Voice Assistant</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="container hero">
+    <h1>Call the AI Agent</h1>
+    <p class="subtitle">Press <strong>Start Call</strong>, then <strong>hold Talk</strong> to speak. Your audio is saved as MP3 when you hang up.</p>
+    <a class="btn" href="index.html">← Back to Home</a>
+  </header>
+
+  <main class="container">
+    <section class="card" style="margin-bottom:16px">
+      <div style="display:flex; flex-wrap:wrap; gap:10px; align-items:center;">
+        <button id="callBtn" class="btn" type="button" aria-pressed="false">Start Call</button>
+
+        <button id="talkBtn" class="btn" type="button" disabled
+          title="Press and hold to talk">
+          ● Hold to Talk
+        </button>
+
+        <label style="color:var(--muted); margin-left:auto;">
+          MP3 quality:
+          <select id="bitrate" style="margin-left:6px;">
+            <option value="48k">48 kbps</option>
+            <option value="64k" selected>64 kbps</option>
+            <option value="96k">96 kbps</option>
+          </select>
+        </label>
+      </div>
+
+      <div style="display:flex; gap:12px; align-items:center; margin-top:12px;">
+        <div id="callStatus" style="color:var(--muted);">Idle.</div>
+        <div style="margin-left:auto; color:var(--muted);" id="timer">00:00</div>
+      </div>
+
+      <div style="margin-top:10px; height:8px; background:var(--border); border-radius:6px; overflow:hidden;">
+        <div id="vu" style="height:100%; width:0%; background:linear-gradient(90deg,#5b8cff,#7aa2ff);"></div>
+      </div>
+
+      <p style="color:var(--muted); margin-top:10px;">Tip: You can release “Talk” between sentences — silence isn’t recorded.</p>
+    </section>
+
+    <section class="card">
+      <h2>Logs</h2>
+      <pre id="log" style="white-space:pre-wrap; margin:0; color:var(--muted); max-height:320px; overflow:auto;"></pre>
+    </section>
+  </main>
+
+  <!-- Simple MP3 encoder (libmp3lame via JavaScript) -->
+  <script src="https://cdn.jsdelivr.net/npm/lamejs@1.2.1/lame.min.js"></script>
+  <script src="record.js"></script>
+</body>
+</html>
